@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Love is in the Air</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
       body {
         margin: 0;
@@ -103,6 +105,61 @@
           transform: translateX(-30px);
         }
       }
+  /* === Dropdown animation === */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  background-color: #d63384;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dropdown-button:hover {
+  background-color: #b30059;
+  transform: scale(1.05);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  background-color: #fce4ec;
+  border-radius: 15px;
+  padding: 10px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 220px;
+  text-align: center;
+}
+
+.dropdown-menu a {
+  display: block;
+  color: #4b1c33;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f8bbd0;
+}
+
+.dropdown-menu a i {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #4b1c33;
+}
     </style>
   </head>
   <body>
@@ -113,10 +170,35 @@
     <h1>Love is in the Air</h1>
     <div class="quote"> "Love is composed of a single soul inhabiting two bodies." — Aristotle </div>
     <div class="quote"> "You don't love someone for their looks, or their clothes, or for their fancy car, but because they sing a song only you can hear." — Oscar Wilde </div>
-    <div class="buttons">
-      <button onclick="window.location.href='https://www.google.com'">Found Video Relatable?</button>
-      <button onclick="window.location.href='https://www.bing.com'">What is this Nonsense</button>
+ <div class="buttons">
+  <!-- New Talk to Me Dropdown Button -->
+  <div class="dropdown">
+    <button onclick="toggleDropdownTalk()" class="dropdown-button">Talk to me</button>
+    <div id="dropdownMenuTalk" class="dropdown-menu">
+    <a href="https://www.whatsapp.com" target="_blank">
+  <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+</a>
+<a href="https://www.telegram.com" target="_blank">
+  <i class="fab fa-telegram"></i> Chat on Telegram
+</a>
     </div>
+  </div>
+
+  <!-- Existing Dropdown Button -->
+  <div class="dropdown">
+    <button onclick="toggleDropdown()" class="dropdown-button">Found Video Relatable?</button>
+    <div id="dropdownMenu" class="dropdown-menu">
+      <a href="https://www.whatsapp.com" target="_blank">
+  <i class="fab fa-whatsapp"></i> Share feedback on WhatsApp
+</a>
+<a href="https://www.telegram.com" target="_blank">
+  <i class="fab fa-telegram"></i> Share feedback on Telegram
+</a>
+    </div>
+  </div>
+
+  <button onclick="window.location.href='https://www.bing.com'">What was this Nonsense?</button>
+</div>
     <footer> ❤️ Made with love — Let your heart guide your clicks ❤️ </footer>
 
     <!-- JavaScript for floating hearts -->
@@ -136,6 +218,29 @@
       }
 
       setInterval(createHeart, 300); // Create a heart every 300ms
+
+
+
+  function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+  
+  function toggleDropdownTalk() {
+  const menu = document.getElementById("dropdownMenuTalk");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+  // Optional: close dropdown when clicking outside
+  window.onclick = function(event) {
+  if (!event.target.matches('.dropdown-button')) {
+    const menu1 = document.getElementById("dropdownMenu");
+    const menu2 = document.getElementById("dropdownMenuTalk");
+    if (menu1) menu1.style.display = "none";
+    if (menu2) menu2.style.display = "none";
+  }
+};
+
     </script>
   </body>
 </html>
